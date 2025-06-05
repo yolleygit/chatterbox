@@ -1,4 +1,4 @@
-# 🍎 Mac系统Chatterbox TTS运行指南
+# 🍎 Mac系统Chatterbox TTS快速运行指南
 
 ## 问题解决方案
 

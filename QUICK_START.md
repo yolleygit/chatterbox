@@ -7,7 +7,7 @@
 - **内存**: 8GB+ 推荐
 - **存储**: 5GB+ 可用空间
 
-## ⚡ 5分钟快速体验
+## ⚡ 3分钟快速体验
 
 ### 1️⃣ 环境准备
 ```bash
@@ -15,138 +15,92 @@
 conda create -n chatterbox python=3.10
 conda activate chatterbox
 
-# 安装Chatterbox TTS
-pip install chatterbox-tts
+# 安装依赖
+pip install -r requirements_web.txt
 ```
 
-### 2️⃣ 快速测试
-
-#### 🍎 Mac用户 (推荐)
+### 2️⃣ 启动Web界面（推荐）
 ```bash
-# 兼容性测试
-python examples/mac_specific/simple_mac_test.py
+# 🎯 核心命令 - 启动最终版Web界面
+python start_final_web.py
 
-# 基础TTS体验
-python examples/basic/basic_tts_example_offline.py
+# 浏览器访问: http://localhost:7862
 ```
 
-#### 💻 其他系统用户
-```bash
-# 基础TTS体验
-python examples/basic/basic_tts_example.py
+### 3️⃣ 开始使用
+1. 点击"🔧 加载AI模型"
+2. 录制或上传音频（3-10秒）
+3. 输入要合成的文本
+4. 点击"🎭 开始语音克隆"
 
-# 安装验证
-python tests/test_installation.py
+🎉 **就这么简单！** 您已经成功体验了AI语音克隆！
+
+---
+
+## 📱 其他启动选项
+
+如果您想尝试不同的界面版本：
+
+```bash
+# 简化版界面（端口7860）
+python start_simple_web.py
+
+# 增强版界面（端口7861）  
+python start_enhanced_web.py
+
+# 语音克隆专版（端口7863）
+python start_voice_cloning_web.py
 ```
 
-### 3️⃣ Web界面体验
+## 🍎 Mac用户专用
+
+Mac用户如遇到设备相关问题，请使用：
 ```bash
-# 启动Web界面（推荐新手）
-python examples/gradio_demos/gradio_demo.py
+# MPS设备检测
+python test_mps_device.py
 
-# 浏览器访问: http://localhost:7860
-```
-
-## 🎯 根据需求选择示例
-
-### 🔰 我是新手，想简单试用
-```bash
-python examples/basic/basic_tts_example_offline.py
-```
-
-### 🍎 我使用Mac系统
-```bash
-python examples/mac_specific/mac_tts_example.py
-```
-
-### 🎛️ 我想控制语音参数
-```bash
-python examples/advanced/advanced_control_example.py
-```
-
-### 👤 我想克隆语音
-```bash
-python examples/advanced/voice_cloning_example.py
-```
-
-### 🌐 我喜欢图形界面
-```bash
-python examples/gradio_demos/gradio_demo.py
+# 查看Mac专用指南
+open docs/Mac完整使用指南.md
 ```
 
 ## 🔧 遇到问题？
 
-### 自动诊断
+### 快速诊断
 ```bash
-python tools/troubleshooting_guide.py
+# 检查环境是否正确
+conda list | grep torch
+
+# 测试基础功能
+python -c "import torch; print(f'PyTorch: {torch.__version__}')"
 ```
 
-### 常见问题快速解决
+### 常见解决方案
 
-#### CUDA错误 (Mac用户常见)
-```
-RuntimeError: Attempting to deserialize object on a CUDA device
-```
-**解决**: 自动修复，或使用Mac专用示例
-
-#### 内存不足
-```
-RuntimeError: CUDA out of memory / MPS out of memory
-```
-**解决**: 
-1. 重启Python会话
-2. 关闭其他应用
-3. 使用CPU模式
-
-#### 网络下载失败
-```
-MaxRetryError / ConnectionError
-```
-**解决**: 使用离线版本示例
+| 问题 | 解决方法 |
+|------|----------|
+| **端口被占用** | 更改端口或关闭占用程序 |
+| **模型下载失败** | 检查网络连接，重试 |
+| **CUDA/MPS错误** | 使用CPU模式或重启 |
+| **依赖缺失** | 重新安装：`pip install -r requirements_web.txt` |
 
 ## 📚 深入学习
 
-### 📁 目录导航
-- **基础示例**: `examples/basic/`
-- **高级功能**: `examples/advanced/`
-- **Mac专用**: `examples/mac_specific/`
-- **Web界面**: `examples/gradio_demos/`
-- **文档**: `docs/`
+想了解更多功能？查看完整文档：
 
-### 📖 推荐阅读顺序
-1. 本快速指南
-2. `examples/basic/README.md`
-3. `PROJECT_STRUCTURE.md`
-4. `docs/MAC_完整使用指南.md` (Mac用户)
-
-## 🎵 成功标志
-
-看到以下输出表示运行成功：
-```
-🎤 初始化Chatterbox TTS模型...
-🍎 使用Apple Metal加速  # Mac用户
-✅ 模型加载完成
-📝 合成文本: 你好，我是Chatterbox...
-⏳ 正在生成语音...
-🎵 语音已保存到: xxx.wav
-📊 采样率: 24000Hz
-⏱️  时长: X.XX秒
-```
+- 📖 **[完整文档](docs/README.md)** - 全面的使用指南
+- 🍎 **[Mac指南](docs/Mac完整使用指南.md)** - Mac系统专用
+- 🎭 **[语音克隆](docs/语音克隆完整指南.md)** - 详细教程
+- 🔧 **[问题解决](docs/常见问题解决方案.md)** - 疑难排除
 
 ## 💡 使用技巧
 
-- 🎯 **首次运行**: 需要下载模型，请耐心等待
-- 🍎 **Mac用户**: 优先使用mac_specific目录中的示例
-- 💾 **网络问题**: 使用带"offline"的离线版本
-- 🔧 **遇到错误**: 运行诊断工具获取解决方案
-- 📱 **图形界面**: 推荐使用Gradio演示获得最佳体验
-
-## 🔗 获取帮助
-
-- **项目文档**: 阅读 `PROJECT_STRUCTURE.md`
-- **故障排除**: 运行 `tools/troubleshooting_guide.py`
-- **Mac指南**: 查看 `docs/MAC_完整使用指南.md`
-- **官方文档**: 查看项目 `README.md`
+- 🎯 **推荐使用最终版**：`python start_final_web.py`
+- 🎤 **录音质量**：3-10秒清晰语音效果最佳
+- 🌐 **网络环境**：首次使用需下载模型（约2GB）
+- 💾 **音频管理**：支持保存和重复使用录音
 
 ---
-🎉 **恭喜！** 您现在可以开始使用Chatterbox TTS了！ 
+
+🎭 **立即开始您的AI语音克隆之旅！**
+
+**核心命令**: `conda activate chatterbox && python start_final_web.py` 

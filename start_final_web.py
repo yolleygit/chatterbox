@@ -36,6 +36,19 @@ def main():
     print("  • 进度条现在与实际AI计算同步")
     print("  • 录音可保存到音频库，方便重复使用")
     print("  • 建议录制3-10秒高质量音频获得最佳效果")
+    
+    # 显示设备检测信息
+    try:
+        import torch
+        if torch.backends.mps.is_available():
+            print("  • 🚀 检测到Apple Silicon MPS，将使用GPU加速")
+        elif torch.cuda.is_available():
+            print("  • 🚀 检测到CUDA GPU，将使用GPU加速")
+        else:
+            print("  • 💻 将使用CPU运行（性能可能较慢）")
+    except:
+        pass
+    
     print()
     
     try:

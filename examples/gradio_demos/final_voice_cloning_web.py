@@ -285,11 +285,22 @@ def load_model_with_info():
             # 显示加载开始
             yield "🔄 正在初始化AI模型..."
             
-            # 加载模型
-            model = ChatterboxTTS.from_pretrained(device="cpu")
+            # 智能设备选择
+            if torch.backends.mps.is_available():
+                device_name = "mps"
+                device_display = "MPS (Apple Silicon)"
+            elif torch.cuda.is_available():
+                device_name = "cuda"
+                device_display = "CUDA (NVIDIA GPU)"
+            else:
+                device_name = "cpu"
+                device_display = "CPU"
+            
+            # 加载模型到最佳设备
+            model = ChatterboxTTS.from_pretrained(device=device_name)
             
             # 获取模型信息
-            device = "CPU (Apple Silicon MPS)" if torch.backends.mps.is_available() else "CPU"
+            device = device_display
             model_info = {
                 "name": "ChatterboxTTS",
                 "version": "v1.0",
@@ -733,8 +744,13 @@ def create_final_interface():
         )
         
         # 音频库操作
+        def save_and_update_dropdown(audio_input, save_name):
+            """保存录音并更新下拉框"""
+            status_msg, updated_choices = save_recording_to_library(audio_input, save_name)
+            return status_msg, gr.Dropdown(choices=updated_choices, value=None)
+        
         save_to_library_btn.click(
-            fn=save_recording_to_library,
+            fn=save_and_update_dropdown,
             inputs=[audio_input, save_name],
             outputs=[library_status, library_dropdown]
         )
@@ -747,11 +763,16 @@ def create_final_interface():
         load_from_library_btn.click(
             fn=load_audio_from_library,
             inputs=library_dropdown,
-            outputs=[preview_audio, audio_status]
+            outputs=[audio_input, audio_status]  # 更新音频输入而不是预览
         )
         
+        def delete_and_update_dropdown(selected_audio):
+            """删除录音并更新下拉框"""
+            status_msg, updated_choices = delete_audio_from_library(selected_audio)
+            return status_msg, gr.Dropdown(choices=updated_choices, value=None)
+        
         delete_from_library_btn.click(
-            fn=delete_audio_from_library,
+            fn=delete_and_update_dropdown,
             inputs=library_dropdown,
             outputs=[library_status, library_dropdown]
         )

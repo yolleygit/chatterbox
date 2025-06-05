@@ -46,3 +46,11 @@ checkpoints/
 
 # Ignore generated sample .wav files
 **/*.wav
+
+# Output directories
+output/
+audio_output/
+temp/
+*.wav
+*.mp3
+*.flac

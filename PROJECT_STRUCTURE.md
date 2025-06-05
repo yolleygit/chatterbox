@@ -1,0 +1,146 @@
+# 🗂️ Chatterbox TTS 项目结构说明
+
+## 📁 目录结构概览
+
+```
+chatterbox/
+├── 📂 src/                          # 🔥 核心源代码
+│   └── chatterbox/                  # 主要模块包
+├── 📂 examples/                     # 🎯 示例代码集合
+│   ├── basic/                       # 基础使用示例
+│   ├── advanced/                    # 高级功能示例
+│   ├── mac_specific/                # Mac系统专用示例
+│   └── gradio_demos/                # Web界面演示
+├── 📂 docs/                         # 📚 文档集合
+├── 📂 tools/                        # 🔧 工具脚本
+├── 📂 tests/                        # 🧪 测试文件
+├── 📂 audio_output/                 # 🎵 音频输出目录
+└── 📄 配置文件                      # 项目配置
+
+```
+
+## 📂 详细目录说明
+
+### 🔥 src/ - 核心源代码
+```
+src/chatterbox/
+├── models/                          # AI模型实现
+│   ├── s3gen/                       # S3生成模型 (语音token→音频)
+│   ├── s3tokenizer/                 # S3分词器 (音频→语音token)
+│   ├── t3/                          # T3模型 (文本→语音token)
+│   ├── tokenizers/                  # 文本分词器
+│   └── voice_encoder/               # 说话人编码器
+├── tts.py                           # 🎤 主要TTS接口
+└── vc.py                            # 🔄 语音转换接口
+```
+
+### 🎯 examples/ - 示例代码
+
+#### 📁 basic/ - 基础示例
+- **`basic_tts_example.py`** - 🎤 最简单的TTS使用示例
+- **`basic_tts_example_offline.py`** - 💾 离线版TTS示例（推荐）
+- **`example_tts.py`** - 🎵 官方基础TTS示例
+- **`example_vc.py`** - 🔄 基础语音转换示例
+
+#### 📁 advanced/ - 高级功能示例
+- **`advanced_control_example.py`** - 🎛️ 高级参数控制演示
+- **`voice_cloning_example.py`** - 👤 语音克隆功能示例
+- **`voice_conversion_example.py`** - 🎭 语音转换详细示例
+
+#### 📁 mac_specific/ - Mac系统专用
+- **`mac_tts_example.py`** - 🍎 Mac优化的TTS示例
+- **`example_for_mac.py`** - 🍎 官方Mac示例
+- **`mac_device_patch.py`** - 🔧 Mac设备映射补丁
+- **`mac_optimization.py`** - ⚡ Mac性能优化脚本
+- **`simple_mac_test.py`** - 🧪 Mac兼容性快速测试
+
+#### 📁 gradio_demos/ - Web界面演示
+- **`gradio_demo.py`** - 🌐 完整功能Web界面
+- **`gradio_tts_app.py`** - 🎤 TTS专用Web应用
+- **`gradio_vc_app.py`** - 🔄 语音转换Web应用
+
+### 📚 docs/ - 文档集合
+- **`MAC_完整使用指南.md`** - 📋 Mac系统完整使用指南
+- **`MAC_运行指南.md`** - 🚀 Mac系统快速运行指南
+
+### 🔧 tools/ - 工具脚本
+- **`troubleshooting_guide.py`** - 🩺 故障诊断和排除工具
+
+### 🧪 tests/ - 测试文件
+- **`test_installation.py`** - ✅ 安装验证测试
+
+### 🎵 audio_output/ - 音频输出
+- 存放生成的音频文件 (.wav格式)
+
+## 📄 根目录文件说明
+
+### 核心配置文件
+- **`README.md`** - 📖 项目主要说明文档
+- **`LICENSE`** - ⚖️ MIT开源许可证
+- **`pyproject.toml`** - 📦 Python项目配置和依赖管理
+- **`.gitignore`** - 🚫 Git忽略文件配置
+
+## 🚀 快速开始指南
+
+### 1. 首次使用 (Mac用户)
+```bash
+# 兼容性测试
+python examples/mac_specific/simple_mac_test.py
+
+# 基础TTS测试
+python examples/basic/basic_tts_example_offline.py
+```
+
+### 2. 基础使用
+```bash
+# 简单TTS
+python examples/basic/basic_tts_example.py
+
+# 高级参数控制
+python examples/advanced/advanced_control_example.py
+```
+
+### 3. Web界面体验
+```bash
+# 启动完整功能Web界面
+python examples/gradio_demos/gradio_demo.py
+```
+
+### 4. Mac用户专属
+```bash
+# Mac优化示例
+python examples/mac_specific/mac_tts_example.py
+
+# 性能优化
+python examples/mac_specific/mac_optimization.py
+```
+
+## 🛠️ 故障排除
+
+```bash
+# 运行诊断工具
+python tools/troubleshooting_guide.py
+
+# 验证安装
+python tests/test_installation.py
+```
+
+## 📊 项目特色
+
+- 🎯 **模块化设计**: 清晰的功能分离
+- 🍎 **Mac优化**: 完整的Apple Silicon支持
+- 🌐 **Web界面**: 用户友好的图形界面
+- 🔧 **工具齐全**: 从测试到故障排除
+- 📚 **文档完善**: 详细的使用指南
+- 🎵 **示例丰富**: 从基础到高级的完整示例
+
+## 💡 使用建议
+
+1. **新用户**: 从 `examples/basic/` 开始
+2. **Mac用户**: 优先使用 `examples/mac_specific/` 中的示例
+3. **开发者**: 参考 `src/` 中的源代码
+4. **Web用户**: 使用 `examples/gradio_demos/` 中的界面
+5. **问题排查**: 查看 `docs/` 和使用 `tools/` 中的工具
+
+---
+*📝 最后更新: 2024年* | *🏠 主页: [Resemble AI](https://resemble.ai)* 

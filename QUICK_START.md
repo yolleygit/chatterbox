@@ -1,0 +1,152 @@
+# 🚀 Chatterbox TTS 快速开始指南
+
+## 📋 系统要求
+
+- **Python**: 3.8+
+- **系统**: macOS, Linux, Windows
+- **内存**: 8GB+ 推荐
+- **存储**: 5GB+ 可用空间
+
+## ⚡ 5分钟快速体验
+
+### 1️⃣ 环境准备
+```bash
+# 创建conda环境
+conda create -n chatterbox python=3.10
+conda activate chatterbox
+
+# 安装Chatterbox TTS
+pip install chatterbox-tts
+```
+
+### 2️⃣ 快速测试
+
+#### 🍎 Mac用户 (推荐)
+```bash
+# 兼容性测试
+python examples/mac_specific/simple_mac_test.py
+
+# 基础TTS体验
+python examples/basic/basic_tts_example_offline.py
+```
+
+#### 💻 其他系统用户
+```bash
+# 基础TTS体验
+python examples/basic/basic_tts_example.py
+
+# 安装验证
+python tests/test_installation.py
+```
+
+### 3️⃣ Web界面体验
+```bash
+# 启动Web界面（推荐新手）
+python examples/gradio_demos/gradio_demo.py
+
+# 浏览器访问: http://localhost:7860
+```
+
+## 🎯 根据需求选择示例
+
+### 🔰 我是新手，想简单试用
+```bash
+python examples/basic/basic_tts_example_offline.py
+```
+
+### 🍎 我使用Mac系统
+```bash
+python examples/mac_specific/mac_tts_example.py
+```
+
+### 🎛️ 我想控制语音参数
+```bash
+python examples/advanced/advanced_control_example.py
+```
+
+### 👤 我想克隆语音
+```bash
+python examples/advanced/voice_cloning_example.py
+```
+
+### 🌐 我喜欢图形界面
+```bash
+python examples/gradio_demos/gradio_demo.py
+```
+
+## 🔧 遇到问题？
+
+### 自动诊断
+```bash
+python tools/troubleshooting_guide.py
+```
+
+### 常见问题快速解决
+
+#### CUDA错误 (Mac用户常见)
+```
+RuntimeError: Attempting to deserialize object on a CUDA device
+```
+**解决**: 自动修复，或使用Mac专用示例
+
+#### 内存不足
+```
+RuntimeError: CUDA out of memory / MPS out of memory
+```
+**解决**: 
+1. 重启Python会话
+2. 关闭其他应用
+3. 使用CPU模式
+
+#### 网络下载失败
+```
+MaxRetryError / ConnectionError
+```
+**解决**: 使用离线版本示例
+
+## 📚 深入学习
+
+### 📁 目录导航
+- **基础示例**: `examples/basic/`
+- **高级功能**: `examples/advanced/`
+- **Mac专用**: `examples/mac_specific/`
+- **Web界面**: `examples/gradio_demos/`
+- **文档**: `docs/`
+
+### 📖 推荐阅读顺序
+1. 本快速指南
+2. `examples/basic/README.md`
+3. `PROJECT_STRUCTURE.md`
+4. `docs/MAC_完整使用指南.md` (Mac用户)
+
+## 🎵 成功标志
+
+看到以下输出表示运行成功：
+```
+🎤 初始化Chatterbox TTS模型...
+🍎 使用Apple Metal加速  # Mac用户
+✅ 模型加载完成
+📝 合成文本: 你好，我是Chatterbox...
+⏳ 正在生成语音...
+🎵 语音已保存到: xxx.wav
+📊 采样率: 24000Hz
+⏱️  时长: X.XX秒
+```
+
+## 💡 使用技巧
+
+- 🎯 **首次运行**: 需要下载模型，请耐心等待
+- 🍎 **Mac用户**: 优先使用mac_specific目录中的示例
+- 💾 **网络问题**: 使用带"offline"的离线版本
+- 🔧 **遇到错误**: 运行诊断工具获取解决方案
+- 📱 **图形界面**: 推荐使用Gradio演示获得最佳体验
+
+## 🔗 获取帮助
+
+- **项目文档**: 阅读 `PROJECT_STRUCTURE.md`
+- **故障排除**: 运行 `tools/troubleshooting_guide.py`
+- **Mac指南**: 查看 `docs/MAC_完整使用指南.md`
+- **官方文档**: 查看项目 `README.md`
+
+---
+🎉 **恭喜！** 您现在可以开始使用Chatterbox TTS了！ 
